@@ -39,7 +39,6 @@ set pastetoggle=<C-t>
 map <C-t> :set paste!<CR>
 imap <C-t> <C-o>:set paste!<CR>
 
- 
 "Useful later rather than dealing with logname/username
 "-------------------------------------------------------
 let user = $USERNAME
