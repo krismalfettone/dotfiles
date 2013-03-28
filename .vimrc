@@ -90,11 +90,9 @@ filetype plugin indent on "required
 "--------------------
  
 "Syntax Highlighting, terminal colors, colorschemes, etc...
+"Purposely done after Vundle
 "-----------------------------------------------------------
 syntax on
- 
-"Colors and such
-"----------------
 set t_Co=256
 silent! colorscheme wombat256mod
 if !exists("g:colors_name") || g:colors_name != "wombat256mod"
