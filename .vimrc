@@ -80,7 +80,7 @@ Bundle 'TaskList.vim'
 Bundle 'wombat256.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'taglist.vim'
-#Bundle 'Command-T'
+"Bundle 'Command-T'
 Bundle 'UltiSnips'
 Bundle 'two2tango'
 
