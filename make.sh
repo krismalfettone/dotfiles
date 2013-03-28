@@ -111,3 +111,6 @@ if [ "$skip" -ne 1 ]; then
    echo "   Updating bundles in vim by running: vim -c BundleInstall! -c BundleClean! -c quitall!"
    vim -c BundleInstall! -cBundleClean! -c quitall!
 fi
+
+#TODO Add support for deeper vim sync'ing ( ftplugin, UltiSnips, etc... )
+#This could also be done by making those github folders for non-work sensitive stuff
