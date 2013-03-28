@@ -324,7 +324,7 @@ set rtp+=/home/malfetto/.vim/bundle/powerline/powerline/bindings/vim
  
 "NERDTree Settings
 "-----------------
-let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\~$','\.pyc$']
 map <leader>nt :NERDTreeFind<CR>
