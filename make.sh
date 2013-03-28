@@ -91,6 +91,7 @@ done
 vundle_dir="$HOME/.vim/bundle/vundle"
 echo ""
 echo "Making sure a version of Vundle is installed to $vundle_dir"
+skip=0
 if [ -e "$vundle_dir" ]; then
    echo "   Vundle is already installed at $vundle_dir"
 else
@@ -101,9 +102,12 @@ else
    ret=$?
    if [ "$?" -eq "0" ]; then
       echo "   Cloning vundle successfull"
-      echo "   Updating bundles in vim by running: vim -c BundleInstall!"
-      vim -c BundleInstall! -c quitall!
    else
       echo "   Something went wrong cloning vundle, please check installation"
+      skip=1
    fi
+fi
+if [ "$skip" -ne 1 ]; then
+   echo "   Updating bundles in vim by running: vim -c BundleInstall!"
+   vim -c BundleInstall! -c quitall!
 fi
