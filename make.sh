@@ -9,13 +9,12 @@
 ############################
 date="$(date +%Y%m%d)"
 dotfile_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #dotfile directory
-backup_dir=$HOME/dotfiles_old/$date # old dotfiles backup directory
+backup_dir=$HOME/dotfiles.old/$date # old dotfiles backup directory
 files="$( for i in $(find $dotfile_dir -name ".*" -type f); do basename $i; done | grep -v '^\.git$' )"
 echo "Files managed by this script:"
 for file in $files; do 
    echo "   $file"
 done
-
 
 ############################
 # create backup dir 
@@ -50,7 +49,7 @@ mkdir -p $backup_dir
 echo "   Created backup directory $backup_dir"
 
 ############################
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
+# backup existing files, setup our links
 ############################
 for file in $files; do
    dotfile_file="$dotfile_dir/$file"
@@ -58,13 +57,30 @@ for file in $files; do
    original_file="$HOME/$file"
    echo ""
    echo "Processing $file:"
+   skip=0
    if [ -e $original_file ]; then
-      echo "   Moving $original_file to $backup_file"
-      mv $original_file $backup_file
+      if [ -h $original_file ]; then
+         linked_to="$(readlink $original_file)"
+         echo "   File $original_file is a symlink to $linked_to"
+         if [ "$linked_to" == "$dotfile_file" ]; then
+            echo "   Skipping $original_file since it is already a symlink to $dotfile_file"
+            skip=1
+         else
+            echo "   Copying \"pointed to\" file $linked_to to $backup_file"
+            cp $linked_to $backup_file
+            echo "   Removing symlink from $original_file -> $linked_to"
+            rm $original_file
+         fi
+      else
+         echo "   Moving $original_file to $backup_file"
+         mv $original_file $backup_file
+      fi
    else
       echo "   Skipping backup of $original_file since it doesn't exist"
    fi
 
-   echo "   Creating symlink from $original_file -> $dotfile_file"
-   ln -s $dotfile_file $original_file
+   if [ "$skip" -ne 1 ]; then
+      echo "   Creating symlink from $original_file -> $dotfile_file"
+      ln -s $dotfile_file $original_file
+   fi
 done
