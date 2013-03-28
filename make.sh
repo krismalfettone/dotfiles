@@ -108,6 +108,6 @@ else
    fi
 fi
 if [ "$skip" -ne 1 ]; then
-   echo "   Updating bundles in vim by running: vim -c BundleInstall!"
+   echo "   Updating bundles in vim by running: vim -c BundleInstall! -c quitall!"
    vim -c BundleInstall! -c quitall!
 fi
