@@ -180,6 +180,7 @@ function! s:CreateNormalGateName()
 endfunction
 "
 "Adds the #define to protect h files when h files are created.
+"This is overridden in in local vimrc for work
 function! s:GetIncludeGuardName()
    let includeguard = <SID>CreateNormalGateName()
    return includeguard
