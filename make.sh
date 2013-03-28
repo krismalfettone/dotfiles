@@ -7,7 +7,7 @@
 ############################
 # Variables
 ############################
-date="$(date +%Y%m%d)"
+date="$(date +"%Y%m%d-%H%M%S")"
 dotfile_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #dotfile directory
 backup_dir=$HOME/dotfiles.old/$date # old dotfiles backup directory
 files="$( for i in $(find $dotfile_dir -name ".*" -type f); do basename $i; done | grep -v '^\.git$' )"
