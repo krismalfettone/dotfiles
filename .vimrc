@@ -80,7 +80,10 @@ Bundle 'TaskList.vim'
 Bundle 'wombat256.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'taglist.vim'
-Bundle 'Command-T'
+#Bundle 'Command-T'
+Bundle 'UltiSnips'
+Bundle 'two2tango'
+
  
 filetype plugin indent on "required
  
@@ -245,8 +248,8 @@ let g:miniBufExplorerMoreThanOne=1
 "let g:tagbar_ctags_bin = "$MY_DIST_BIN/ctags"
 "let g:tagbar_left = 1
 "let g:tagbar_width = 50
-map <Leader>tb :TagbarToggle<CR>
-"map <Leader>tb :TagbarOpenAutoClose<CR>
+map <Leader>tt :TagbarToggle<CR>
+map <Leader>tb :TagbarOpen j<CR>
  
 "Taglist Settings
 "let g:Tlist_Ctags_Cmd = "$MY_DIST_BIN/ctags"
@@ -323,6 +326,7 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\~$','\.pyc$']
 map <leader>nt :NERDTreeFind<CR>
+map <leader>NT :NERDTreeToggle<CR>
 
 "MiniBufExpl Settings
 "---------------------
@@ -335,3 +339,10 @@ map <Leader>mb :TMiniBufExplorer<cr>
 "-------------------
 nnoremap <silent> <Leader>ct :CommandT<CR>
 nnoremap <silent> <Leader>ctb :CommandTBuffer<CR>
+
+"UltiSnips Settings
+"------------------
+let g:UltiSnipsDontReverseSearchPath="1" "Make sure their snips are processed before mine
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
