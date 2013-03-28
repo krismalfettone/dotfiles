@@ -346,3 +346,11 @@ let g:UltiSnipsDontReverseSearchPath="1" "Make sure their snips are processed be
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+
+"Allow local vimrc settings ( this is to handle work vs. home settings )
+"-----------------------------------------------------------------------
+let local_vimrc=glob("~/.vimrc.local")
+if filereadable(local_vimrc)
+   execute "source " . local_vimrc
+endif
