@@ -72,7 +72,7 @@ Bundle 'a.vim'
 Bundle 'ervandew/supertab'
 Bundle 'Tagbar'
 "Bundle 'Lokaltog/vim-powerline'
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
 Bundle 'tslime.vim'
 Bundle 'desert-warm-256'
 Bundle 'FuzzyFinder'
@@ -95,22 +95,10 @@ syntax on
  
 "Colors and such
 "----------------
-if &term == "xterm-256color"
-   set t_Co=256
-   colorscheme wombat256mod
-   "colorscheme diablo3
-elseif &term == "screen-256color"
-  set t_Co=256
-   colorscheme wombat256mod
-   "colorscheme diablo3
-elseif &term == "screen"
-  set t_Co=256
-   colorscheme wombat256mod
-   "colorscheme diablo3
-elseif &term == "linux"
-  set t_Co=256
-   colorscheme wombat256mod
-   "colorscheme diablo3
+set t_Co=256
+silent! colorscheme wombat256mod
+if !exists("g:colors_name") || g:colors_name != "wombat256mod"
+   colorscheme torte
 endif
  
  

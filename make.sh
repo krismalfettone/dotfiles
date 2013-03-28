@@ -84,3 +84,26 @@ for file in $files; do
       ln -s $dotfile_file $original_file
    fi
 done
+
+############################
+# make sure vundle is installed
+############################
+vundle_dir="$HOME/.vim/bundle/vundle"
+echo ""
+echo "Making sure a version of Vundle is installed to $vundle_dir"
+if [ -e "$vundle_dir" ]; then
+   echo "   Vundle is already installed at $vundle_dir"
+else
+   #We could also stick a version in our dotfiles folder and copy it over
+   #But don't link it, I don't think we want to change it in git )
+   echo "   Cloning vundle from git into $vundle_dir"
+   git clone https://github.com/gmarik/vundle.git $vundle_dir
+   ret=$?
+   if [ "$?" -eq "0" ]; then
+      echo "   Cloning vundle successfull"
+      echo "   Updating bundles in vim by running: vim -c BundleInstall!"
+      vim -c BundleInstall! -c quitall!
+   else
+      echo "   Something went wrong cloning vundle, please check installation"
+   fi
+fi
