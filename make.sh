@@ -98,7 +98,7 @@ else
    #We could also stick a version in our dotfiles folder and copy it over
    #But don't link it, I don't think we want to change it in git )
    echo "   Cloning vundle from git into $vundle_dir"
-   git clone https://github.com/gmarik/vundle.git $vundle_dir
+   git clone http://github.com/gmarik/vundle.git $vundle_dir
    ret=$?
    if [ "$?" -eq "0" ]; then
       echo "   Cloning vundle successfull"
