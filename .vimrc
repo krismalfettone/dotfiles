@@ -35,9 +35,10 @@ set ignorecase
 
 "Paste mode toggling 
 "I stopped using insert since my chromeos doesn't have an insert mode mapping
-set pastetoggle=<C-t>
-map <C-t> :set paste!<CR>
-imap <C-t> <C-o>:set paste!<CR>
+"Also, chromeos C-t and C-n are bound in the browser window
+set pastetoggle=<C-y>
+map <C-y> :set paste!<CR>
+imap <C-y> <C-o>:set paste!<CR>
 
 "Useful later rather than dealing with logname/username
 "-------------------------------------------------------
