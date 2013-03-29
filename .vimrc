@@ -32,6 +32,7 @@ set clipboard=unnamed,autoselect "Used to also have ,exclude:cons\|linux
 set splitright
 set shm=at
 set ignorecase
+set encoding=utf-8
 
 "Paste mode toggling 
 "I stopped using insert since my chromeos doesn't have an insert mode mapping
