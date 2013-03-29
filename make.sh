@@ -9,7 +9,7 @@
 ############################
 date="$(date +"%Y%m%d-%H%M%S")"
 dotfile_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #dotfile directory
-backup_dir=$HOME/dotfiles.old/$date # old dotfiles backup directory
+backup_dir=$HOME/.dotfiles.backup/$date # old dotfiles backup directory
 files="$( for i in $(find $dotfile_dir -name ".*" -type f); do basename $i; done | grep -v '^\.git$' )"
 echo "Files managed by this script:"
 for file in $files; do 

@@ -64,28 +64,39 @@ Bundle 'gmarik/vundle'
 "L9 is a dependency of FuzzyFinder
 "-----------
 "Colorschemes
-Bundle 'Diablo3'
-"Plugins
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'pylint.vim'
-Bundle 'a.vim'
-Bundle 'ervandew/supertab'
-Bundle 'Tagbar'
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'Lokaltog/powerline'
-Bundle 'tslime.vim'
+"------------
 Bundle 'desert-warm-256'
+Bundle 'two2tango'
+Bundle 'wombat256.vim'
+Bundle 'Diablo3'
+
+"Bundles from vim.org
+"--------------------
+Bundle 'a.vim'
+Bundle 'pylint.vim'
+Bundle 'tslime.vim'
+Bundle 'taglist.vim'
+Bundle 'TaskList.vim'
+
+"Bundles from designed for Vundle or pathogen
+"--------------------------------------------
+Bundle 'Tagbar'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
-Bundle 'TaskList.vim'
-Bundle 'wombat256.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'taglist.vim'
-"Bundle 'Command-T'
 Bundle 'UltiSnips'
-Bundle 'two2tango'
-Bundle 'krismalfettone/vim-extras'
+
+"Bundles from GitHub
+"-------------------
+"Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'ervandew/supertab'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'scrooloose/nerdtree'
  
+"My Bundle of settings
+"---------------------
+Bundle 'krismalfettone/vim-extras'
+
 filetype plugin indent on "required
  
 "--------------------
@@ -258,7 +269,7 @@ map <Leader>tb :TagbarOpen j<CR>
 let g:Tlist_Use_Right_Window = 1
 map <Leader>tl :TlistToggle<CR>
  
-"FuzzyFinder Settings
+"FuzzyFinder Settings (I'll delete some of the maps later)
 "---------------------
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
@@ -306,21 +317,17 @@ nnoremap <silent> sh     :FufHelp<CR>
 nnoremap <silent> se     :FufEditDataFile<CR>
 nnoremap <silent> sr     :FufRenewCache<CR>
  
-"Tasklist Settings
+"Tasklist Settings ( TODOs )
 "-----------------
 map <leader>td <Plug>TaskList
  
 "Powerline settings ( really workarounds for newest powerline, i am not using it )
 "-------------------
-let g:powerline_loaded=1
-set encoding=utf-8
-"let g:Powerline_symbols = 'compatible'
-"let g:Powerline_symbols = 'unicode'
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-python import sys
-python sys.path.append("/home/malfetto/.vim/bundle/powerline")
-set rtp+=/home/malfetto/.vim/bundle/powerline/powerline/bindings/vim
+"let g:powerline_loaded=1
+"set encoding=utf-8
+"python import sys
+"python sys.path.append("/home/malfetto/.vim/bundle/powerline")
+"set rtp+=/home/malfetto/.vim/bundle/powerline/powerline/bindings/vim
  
 "NERDTree Settings
 "-----------------
@@ -333,14 +340,7 @@ map <leader>NT :NERDTreeToggle<CR>
 "MiniBufExpl Settings
 "---------------------
 let g:miniBufExplModSelTarget = 1
-"let g:miniBufExplorerMoreThanOne=1000
-"let g:miniBufExplCloseOnSelect = 0
 map <Leader>mb :TMiniBufExplorer<cr>
-
-"Command-T Settings
-"-------------------
-nnoremap <silent> <Leader>ct :CommandT<CR>
-nnoremap <silent> <Leader>ctb :CommandTBuffer<CR>
 
 "UltiSnips Settings
 "------------------
