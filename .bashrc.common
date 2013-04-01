@@ -1,0 +1,8 @@
+export SOURCED_BASHRC="$(date)"
+export EDITOR="vim"
+
+###############
+#RANDOM ALIASES
+###############
+unalias ls >/dev/null 2>/dev/null
+alias ls='ls --color=auto'
