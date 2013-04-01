@@ -6,3 +6,37 @@ export EDITOR="vim"
 ###############
 unalias ls >/dev/null 2>/dev/null
 alias ls='ls --color=auto'
+
+################################################################
+#Utility function to list all my utility functions
+#All my utility functions start with double underscores
+################################################################
+function __list_my_functions()
+{
+   if [ "$1" != "-a" ]; then
+      set | grep '^__[^_]' | grep -v "__ "
+   else
+      set | grep '^__[^_]' 
+   fi
+}
+
+################################################################
+#Utility to function to go up to a directory from a subdirectory
+#and its completion function
+################################################################
+__upto(){
+   if [ -z $1 ]; then
+      echo "Usage: __upto [directory]"
+      return 1
+   fi
+   local upto=$1
+   cd "${PWD/\/$upto\/*//$upto}"
+}
+
+#Completion function
+___upto(){
+   local cur=${COMP_WORDS[COMP_CWORD]}
+   d=${PWD//\//\ }
+   COMPREPLY=( $( compgen -W "$d" -- $cur ) )
+}
+complete -F ___upto __upto
