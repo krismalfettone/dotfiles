@@ -33,11 +33,11 @@ color_echo() {
 }
 
 heading() {
-   color_echo "$1" $bldblu
+   color_echo "$1" $bldgrn
 }
 
 info() {
-   color_echo "$1" $bldgrn
+   color_echo "$1" $bldwht
 }
 
 error() {
@@ -53,7 +53,7 @@ backup_dir=$HOME/.dotfiles.backup/$date # old dotfiles backup directory
 files="$( for i in $(find $dotfile_dir -name ".*" -type f); do basename $i; done | grep -v '^\.git$' )"
 heading "Files managed by this script:"
 for file in $files; do 
-   info "   $file"
+   info "   $file" $bldwht
 done
 
 ############################
