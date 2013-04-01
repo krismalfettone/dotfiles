@@ -37,9 +37,9 @@ set encoding=utf-8
 "Paste mode toggling 
 "I stopped using insert since my chromeos doesn't have an insert mode mapping
 "Also, chromeos C-t and C-n are bound in the browser window
-set pastetoggle=<C-a>
-map <C-a> :set paste!<CR>
-imap <C-a> <C-o>:set paste!<CR>
+set pastetoggle=<C-e>
+map <C-e> :set paste!<CR>
+imap <C-e> <C-o>:set paste!<CR>
 
 "Useful later rather than dealing with logname/username
 "-------------------------------------------------------
