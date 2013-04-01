@@ -49,7 +49,7 @@ alias ls='ls --color=auto'
 #Utility function to list all my utility functions
 #All my utility functions start with double underscores
 ################################################################
-function __list_my_functions()
+__list_my_functions()
 {
    if [ "$1" != "-a" ]; then
       set | grep '^__[^_]' | grep -v "__ "
@@ -98,4 +98,4 @@ __color_echo() {
    tput sgr0 
 
    return
-}  
+}
