@@ -180,7 +180,7 @@ function! MyLastWindow()
    endif
 endfunction
  
-function! s:CreateNormalGateName()
+function! CreateNormalGateName()
    "Get the full path from Source with '/', '.', '-' replaced by _
    let fullpath = expand("%:p")
    "let tmp = substitute(fullpath,".*Source/","","")
@@ -193,23 +193,73 @@ endfunction
 "
 "Adds the #define to protect h files when h files are created.
 "This is overridden in in local vimrc for work
-function! s:GetIncludeGuardName()
-   let includeguard = <SID>CreateNormalGateName()
+function! GetIncludeGuardName()
+   let includeguard = CreateNormalGateName()
    return includeguard
 endfunction
  
 "Adds the #define to protect h files when h files are created.
-function! s:InsertIncludeGuard()
-   let includeguard = <SID>GetIncludeGuardName()
+function! InsertIncludeGuard()
+   let includeguard = GetIncludeGuardName()
    execute "normal i#ifndef " . includeguard
    execute "normal o#define " . includeguard
    execute "normal Go#endif /* " . includeguard . " */"
    normal kk
 endfunction
+
+function! UpdateGatesFunction()
+   "Save the current cursor posistion
+   let save_cursor = getpos(".")
+   let search_flags = "cnw"
+   "We have to start at the top and hope they made the include gates the first
+   "#ifndef in the file
+   normal gg
+   let opening_gate_search_str = "^\\(\\s*\\)#ifndef\\(\\s\\+\\)\\(\\S\\+\\)\\(.*\\)$"
+   let opening_gate_ln = search(opening_gate_search_str,search_flags)
+   if opening_gate_ln == 0
+      echo "Could not find opening gate"
+      return
+   endif
+   
+   "Get the gate name
+   let opening_gate = getline(opening_gate_ln)
+   let match_list = matchlist(opening_gate,opening_gate_search_str)
+   let gate_name = match_list[3]
+
+   "Find the define for the gate
+   let define_search_str = "^\\(\\s*\\)#define\\(\\s\\+\\)\\(" . gate_name . "\\)\\(.*\\)$"
+   let gate_define_ln = search(define_search_str,search_flags)
+   if gate_define_ln == 0
+      echo "Could not find define for gate"
+      return
+   endif
+
+   "Find the closing endif of the gate, should be the last endif
+   normal G
+   let endif_search_str = "^\\(\\s*\\)#endif\\(.*\\)$"
+   let endif_ln = search(endif_search_str,"b" . search_flags) "Note backwards search here
+   if endif_ln == 0
+      echo "Could not find the final endif"
+      return
+   endif
+
+   "For all three lines do a search/replace on the gate_name with the new one
+   let gate_search = "\\<" . gate_name . "\\>"
+   let new_opening_str = substitute(getline(opening_gate_ln),gate_search,GetIncludeGuardName(),"g")
+   let new_defining_str = substitute(getline(gate_define_ln),gate_search,GetIncludeGuardName(),"g")
+   let new_endif_str = substitute(getline(endif_ln),gate_search,GetIncludeGuardName(),"g")
+   call setline(opening_gate_ln,new_opening_str)
+   call setline(gate_define_ln,new_defining_str)
+   call setline(endif_ln,new_endif_str)
+
+   "Restore the current cursor posistion
+   call setpos('.',save_cursor)
+endfunction
+command! -nargs=0 UpdateGates :call UpdateGatesFunction()
  
 "Utitlity function to fix highlighting when a bufdo command turned it off
 "-------------------------------------------------------------------------
-function! s:FixHighlighting()
+function! FixHighlighting()
    let curr = bufname("%")
    let start = 1
    let end = bufnr("$")
@@ -222,7 +272,7 @@ function! s:FixHighlighting()
    endwhile
    execute "buffer " . curr
 endfunction
-command! -nargs=0 FixHighlighting :call <SID>FixHighlighting()
+command! -nargs=0 FixHighlighting :call FixHighlighting()
  
 "Pulses the cursor location for easy locating
 "---------------------------------------------
