@@ -53,7 +53,7 @@ backup_dir=$HOME/.dotfiles.backup/$date # old dotfiles backup directory
 files="$( for i in $(find $dotfile_dir -name ".*" -type f); do basename $i; done | grep -v '^\.git$' )"
 heading "Files managed by this script:"
 for file in $files; do 
-   info "   $file" $bldwht
+   info "   $file"
 done
 
 ############################
@@ -125,6 +125,25 @@ for file in $files; do
    fi
 done
 
+echo ""
+heading "Checking backup directory $backup_dir to see if it is necessary"
+backed_up_files="$(ls -A $backup_dir)"
+if [ "$backed_up_files" ]; then
+   info "   Keeping backup directory $backup_dir because the following files were backed up:"
+   for file in $backed_up_files; do 
+      info "   $file"
+   done
+else
+   info "   Removing unnecessary backup directory $backup_dir"
+   rmdir $backup_dir
+   ret=$?
+   if [ "$?" -eq "0" ]; then
+      info "   Successfully removed unnecessary backup directory $backup_dir"
+   else
+      info "   Error removing backup directory $backup_dir using rmdir, please check installation"
+   fi
+fi
+
 ############################
 # make sure vundle is installed
 ############################
@@ -147,10 +166,13 @@ else
       skip=1
    fi
 fi
+
+if [ "$1" == "-q" ]; then
+   skip=1
+fi
 if [ "$skip" -ne 1 ]; then
    info "   Updating bundles in vim by running: vim -c BundleInstall! -c BundleClean! -c quitall!"
    vim -c BundleInstall! -cBundleClean! -c quitall!
+else
+   info "   Skipping update of bundles in vim"
 fi
-
-#TODO Add support for deeper vim sync'ing ( ftplugin, UltiSnips, etc... )
-#This could also be done by making those github folders for non-work sensitive stuff
