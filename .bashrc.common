@@ -99,3 +99,10 @@ __color_echo() {
 
    return
 }
+
+################################################################
+#Utility function to use vimdiff as a git diff
+################################################################
+__git_diff() {
+   git difftool --tool=vimdiff --no-prompt "$@"
+}
