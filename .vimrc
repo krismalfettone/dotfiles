@@ -6,8 +6,6 @@ set shiftwidth=3
 set nowrap
 set backup
 set writebackup
-set backupdir=~/MISC/backups,/tmp,.
-set directory=/hostname/malfetto/swap_files,~/MISC/swap_files/.,~/tmp,/var/tmp,/tmp
 set number
 set report=0
 set autoread
@@ -33,6 +31,7 @@ set splitright
 set shm=at
 set ignorecase
 set encoding=utf-8
+"There a also couple of options I set after loading the local vimrc file
 
 "Paste mode toggling 
 "I stopped using insert since my chromeos doesn't have an insert mode mapping
@@ -114,7 +113,6 @@ if !exists("g:colors_name") || g:colors_name != "wombat256mod"
    colorscheme torte
 endif
  
- 
 "Random key mappings
 "--------------------
 map <Leader>q :qa<CR>
@@ -122,14 +120,10 @@ nmap ,v :e ~/.vimrc<CR>
 nmap ,s :source ~/.vimrc<CR>
  
 "Make buffer / window switching easier
+"Assumes MiniBufExpl is installed
 "--------------------------------------
-if user == "malfetto"
-   nmap <C-n> :MBEbn<cr>
-   nmap <C-p> :MBEbp<cr>
-else
-   nmap <C-n> :bn<cr>
-   nmap <C-p> :bp<cr>
-endif
+nmap <C-n> :MBEbn<cr>
+nmap <C-p> :MBEbp<cr>
  
 "Window switching and line movements when wrap is on
 "----------------------------------------------------
@@ -377,8 +371,8 @@ map <leader>td <Plug>TaskList
 "let g:powerline_loaded=1
 "set encoding=utf-8
 "python import sys
-"python sys.path.append("/home/malfetto/.vim/bundle/powerline")
-"set rtp+=/home/malfetto/.vim/bundle/powerline/powerline/bindings/vim
+"python sys.path.append(expand("~/.vim/bundle/powerline"))
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
  
 "NERDTree Settings
 "-----------------
@@ -400,10 +394,36 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-
 "Allow local vimrc settings ( this is to handle work vs. home settings )
 "-----------------------------------------------------------------------
-let local_vimrc=glob("~/.vimrc.local")
+let local_vimrc=expand("~/.vimrc.local")
 if filereadable(local_vimrc)
    execute "source " . local_vimrc
+endif
+
+"Give the local settings a chance to change this
+"------------------------------------------------
+set directory=~/.vim.swap_files,/tmp/,.
+if exists("g:DontCreatePreferredSwapFileLocation") == 0 || g:DontCreatePreferredSwapFileLocation == 0
+   let preferred_dir = expand("~/.vim.swap_files")
+   if !isdirectory(preferred_dir)
+      if exists("*mkdir")
+         echo "Creating preferred swap file location: " . preferred_dir
+         call mkdir(preferred_dir,"p",0700)
+      else
+         echo "Cannot create directory: " . preferred_dir . " because the mkdir function does not exist"
+      endif
+   endif
+endif
+set backupdir=~/.vim.backup_files,/tmp,.
+if exists("g:DontCreatePreferredBackupFileLocation") == 0 || g:DontCreatePreferredBackupFileLocation == 0
+   let preferred_dir = expand("~/.vim.backup_files")
+   if !isdirectory(preferred_dir)
+      if exists("*mkdir")
+         echo "Creating preferred backup file location: " . preferred_dir
+         call mkdir(preferred_dir,"p",0700)
+      else
+         echo "Cannot create directory: " . preferred_dir . " because the mkdir function does not exist"
+      endif
+   endif
 endif
