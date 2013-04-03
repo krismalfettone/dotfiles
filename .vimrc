@@ -317,6 +317,7 @@ if has("autocmd")
    autocmd BufEnter * call MyLastWindow()
    autocmd BufEnter * let &titlestring = "vim<" . user . "@" . hostname() . "> " . expand("%:p")
    autocmd BufNewFile *.{h,hpp} call <SID>InsertIncludeGuard()
+   autocmd FileType tagbar setlocal nocursorline nocursorcolumn
    set title titlestring=%<%F%=%l/%L-%P titlelen=70
 endif " has("autocmd")
  
