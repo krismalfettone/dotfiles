@@ -1,6 +1,8 @@
+set nocompatible
 "---------------------------------------------------------------------------
 "Vundle settings
-"It should be the first step to make sure everything is loaded correctly
+"Besides nocompatible it should be the first step to make sure everything
+"loads correctly
 "---------------------------------------------------------------------------
 filetype off "required
 let g:vundle_default_git_proto = 'http'
