@@ -127,8 +127,8 @@ endif
 "Random key mappings
 "--------------------
 map <Leader>q :qa<CR>
-nmap ,v :e ~/.vimrc<CR>
-nmap ,s :source ~/.vimrc<CR>
+nmap ,v :e $HOME/.vimrc<CR>
+nmap ,s :source $HOME/.vimrc<CR>
  
 "--------------------------------------
 "Make buffer / window switching easier
@@ -329,7 +329,7 @@ let g:miniBufExplorerMoreThanOne=1
 "-----------------
 "Tagbar Settings
 "-----------------
-map <Leader>tt :TagbarToggle<CR>
+map <Leader>TB :TagbarToggle<CR>
 map <Leader>tb :TagbarOpen j<CR>
  
 "-----------------
@@ -426,7 +426,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "-----------------------------------------------------------------------
 "Allow local vimrc settings ( this is to handle work vs. home settings )
 "-----------------------------------------------------------------------
-let local_vimrc=expand("~/.vimrc.local")
+let local_vimrc=expand("$HOME/.vimrc.local")
 if filereadable(local_vimrc)
    execute "source " . local_vimrc
 endif
@@ -434,28 +434,15 @@ endif
 "--------------------------------------------------------------
 "Done after local settings to give them a chance to override it
 "--------------------------------------------------------------
-set directory=~/.vim.swap_files,/tmp/,.
-set backupdir=~/.vim.backup_files,/tmp,.
-
+set backupdir=$HOME/.vim.backup_files,/tmp,.
 
 "We don't want to do this stuff if we are only updating dotfiles
 if exists("$PROCESSING_DOTFILES")
    finish 
 endif
 
-if exists("g:DontCreatePreferredSwapFileLocation") == 0 || g:DontCreatePreferredSwapFileLocation == 0
-   let preferred_dir = expand("~/.vim.swap_files")
-   if !isdirectory(preferred_dir)
-      if exists("*mkdir")
-         echo "Creating preferred swap file location: " . preferred_dir
-         call mkdir(preferred_dir,"p",0700)
-      else
-         echo "Cannot create directory: " . preferred_dir . " because the mkdir function does not exist"
-      endif
-   endif
-endif
 if exists("g:DontCreatePreferredBackupFileLocation") == 0 || g:DontCreatePreferredBackupFileLocation == 0
-   let preferred_dir = expand("~/.vim.backup_files")
+   let preferred_dir = expand("$HOME/.vim.backup_files")
    if !isdirectory(preferred_dir)
       if exists("*mkdir")
          echo "Creating preferred backup file location: " . preferred_dir
