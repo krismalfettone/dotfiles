@@ -33,6 +33,7 @@ Bundle 'Tagbar'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
+Bundle 'LargeFile'
 
 "Bundles from GitHub
 "-------------------
