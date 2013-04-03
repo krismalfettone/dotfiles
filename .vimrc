@@ -24,7 +24,7 @@ Bundle 'Diablo3'
 Bundle 'a.vim'
 Bundle 'pylint.vim'
 Bundle 'tslime.vim'
-Bundle 'taglist.vim'
+"Bundle 'taglist.vim'
 Bundle 'TaskList.vim'
 
 "Bundles from designed for Vundle or pathogen
