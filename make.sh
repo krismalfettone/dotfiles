@@ -3,6 +3,9 @@
 # .make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
+export PROCESSING_DOTFILES=1
+
+#Utility colors
 bldblk='\e[1;30m' # Black - Bold
 bldred='\e[1;31m' # Red
 bldgrn='\e[1;32m' # Green
@@ -172,7 +175,9 @@ if [ "$1" == "-q" ]; then
 fi
 if [ "$skip" -ne 1 ]; then
    info "   Updating bundles in vim by running: vim -c BundleInstall! -c BundleClean! -c quitall!"
-   vim -c BundleInstall! -cBundleClean! -c quitall!
+   vim -c BundleInstall! -c BundleClean! -c quitall!
 else
    info "   Skipping update of bundles in vim"
 fi
+
+unset PROCESSING_DOTFILES
