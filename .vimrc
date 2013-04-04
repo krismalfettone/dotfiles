@@ -26,7 +26,6 @@ Bundle 'Diablo3'
 Bundle 'a.vim'
 Bundle 'pylint.vim'
 Bundle 'tslime.vim'
-"Bundle 'taglist.vim'
 Bundle 'TaskList.vim'
 
 "Bundles from designed for Vundle or pathogen
@@ -92,6 +91,13 @@ set shm=at
 set ignorecase
 set encoding=utf-8
 "There a also couple of options I set later and after loading the local vimrc file
+
+"---------------------------------------------------------
+"Random vim settings done by variables instead of settings
+"xml folding later enabled in the ftplugin
+"---------------------------------------------------------
+let g:xml_syntax_folding=1
+
 
 "-----------------------------------------------------------
 "Syntax Highlighting, terminal colors, colorschemes, etc...
@@ -331,12 +337,6 @@ let g:miniBufExplorerMoreThanOne=1
 "-----------------
 map <Leader>TB :TagbarToggle<CR>
 map <Leader>tb :TagbarOpen j<CR>
- 
-"-----------------
-"Taglist Settings
-"-----------------
-let g:Tlist_Use_Right_Window = 1
-map <Leader>tl :TlistToggle<CR>
  
 "---------------------
 "FuzzyFinder Settings (I'll delete some of the maps later)
