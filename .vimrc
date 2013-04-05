@@ -39,7 +39,8 @@ Bundle 'LargeFile'
 "Bundles from GitHub
 "-------------------
 "Bundle 'Lokaltog/powerline'
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'ashwin/vim-powerline'
 Bundle 'ervandew/supertab'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
@@ -395,9 +396,10 @@ map <leader>td <Plug>TaskList
 "Powerline settings ( really workarounds for newest powerline, i am not using it )
 "-------------------
 "let g:powerline_loaded=1
+"let g:powerline_config_path=expand("~/.config/powerline")
 "set encoding=utf-8
 "python import sys
-"python sys.path.append(expand("~/.vim/bundle/powerline"))
+"python sys.path.append("~/.vim/bundle/powerline")
 "set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
  
 "-----------------
