@@ -40,7 +40,7 @@ Bundle 'LargeFile'
 "-------------------
 "Bundle 'Lokaltog/powerline'
 "Bundle 'Lokaltog/vim-powerline'
-Bundle 'ashwin/vim-powerline'
+"Bundle 'ashwin/vim-powerline'
 Bundle 'ervandew/supertab'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
