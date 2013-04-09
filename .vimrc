@@ -44,6 +44,7 @@ Bundle 'LargeFile'
 Bundle 'ervandew/supertab'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
  
 "My Bundle of settings
 "---------------------
