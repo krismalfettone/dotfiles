@@ -27,6 +27,7 @@ Bundle 'a.vim'
 Bundle 'pylint.vim'
 Bundle 'tslime.vim'
 Bundle 'TaskList.vim'
+Bundle 'matchit.zip'
 
 "Bundles from designed for Vundle or pathogen
 "--------------------------------------------
