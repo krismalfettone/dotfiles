@@ -91,7 +91,7 @@ set spelllang=en_us
 set clipboard=unnamed,autoselect "Used to also have ,exclude:cons\|linux
 set splitright
 set shm=at
-set ignorecase
+set noignorecase
 set encoding=utf-8
 "There a also couple of options I set later and after loading the local vimrc file
 
