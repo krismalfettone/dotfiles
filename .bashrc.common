@@ -1,5 +1,10 @@
 export SOURCED_BASHRC="$(date)"
 export EDITOR="vim"
+export WORKON_HOME=~/VirtualEnvs
+if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+   source /usr/local/bin/virtualenvwrapper.sh
+fi
+
 
 ###############
 #RANDOM ALIASES
