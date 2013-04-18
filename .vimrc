@@ -62,6 +62,7 @@ filetype plugin indent on "required
 "Random settings
 "---------------
 set nocompatible
+set ruler
 set backspace=2
 set laststatus=2
 set tabstop=3
