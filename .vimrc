@@ -36,6 +36,7 @@ Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
 Bundle 'LargeFile'
+Bundle 'AutoComplPop'
 
 "Bundles from GitHub
 "-------------------
