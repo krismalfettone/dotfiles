@@ -36,7 +36,8 @@ Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
 Bundle 'LargeFile'
-Bundle 'AutoComplPop'
+"Bundle 'AutoComplPop'
+Bundle 'OmniCppComplete'
 
 "Bundles from GitHub
 "-------------------
@@ -49,6 +50,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-dispatch'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Rip-Rip/clang_complete'
  
 "My Bundle of settings
 "---------------------
@@ -329,7 +332,7 @@ nmap <Leader>w :SetWritable<CR>
 if has("autocmd")
    autocmd BufEnter * call MyLastWindow()
    autocmd BufEnter * let &titlestring = "vim<" . user . "@" . hostname() . "> " . expand("%:p")
-   autocmd BufNewFile *.{h,hpp} call <SID>InsertIncludeGuard()
+   autocmd BufNewFile *.{h,hpp} call InsertIncludeGuard()
    autocmd FileType tagbar setlocal nocursorline nocursorcolumn
    set title titlestring=%<%F%=%l/%L-%P titlelen=70
 endif " has("autocmd")
@@ -414,7 +417,7 @@ map <leader>td <Plug>TaskList
 let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\~$','\.pyc$']
-map <leader>nt :NERDTreeFind<CR>
+map <leader>nt :NERDTree<CR>
 map <leader>NT :NERDTreeToggle<CR>
 
 "---------------------
@@ -430,6 +433,13 @@ let g:UltiSnipsDontReverseSearchPath="1" "Make sure their snips are processed be
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+"------------------
+"Syntastic settings
+"Some are also set in the after plugin directory
+"------------------
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_include_dirs = [ '$PROJ_SRC_DIR', '/siglinux/tc/sles11sp1_gcc-4.3.4_x86-64/sig1/boost-1.47.0/include', '$PROJ_SRC_DIR/MD/Tools/mctools'  ]
 
 "-----------------------------------------------------------------------
 "Allow local vimrc settings ( this is to handle work vs. home settings )
