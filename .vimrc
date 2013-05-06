@@ -31,19 +31,20 @@ Bundle 'matchit.zip'
 
 "Bundles from designed for Vundle or pathogen
 "--------------------------------------------
+"Bundle 'AutoComplPop'
+"Bundle 'OmniCppComplete'
 Bundle 'Tagbar'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
 Bundle 'LargeFile'
-"Bundle 'AutoComplPop'
-Bundle 'OmniCppComplete'
 
 "Bundles from GitHub
 "-------------------
 "Bundle 'Lokaltog/powerline'
 "Bundle 'Lokaltog/vim-powerline'
 "Bundle 'ashwin/vim-powerline'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
@@ -52,6 +53,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-dispatch'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Rip-Rip/clang_complete'
+Bundle 'osyo-manga/neocomplcache-clang_complete'
  
 "My Bundle of settings
 "---------------------
@@ -351,65 +353,19 @@ map <Leader>tb :TagbarOpen j<CR>
 "---------------------
 "FuzzyFinder Settings (I'll delete some of the maps later)
 "---------------------
-let g:fuf_modesDisable = []
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem = 400
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 nnoremap <silent> sj     :FufBuffer<CR>
 nnoremap <silent> sk     :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> sK     :FufFileWithFullCwd<CR>
 nnoremap <silent> s<C-k> :FufFile<CR>
-nnoremap <silent> sl     :FufCoverageFileChange<CR>
-nnoremap <silent> sL     :FufCoverageFileChange<CR>
-nnoremap <silent> s<C-l> :FufCoverageFileRegister<CR>
-nnoremap <silent> sd     :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> sD     :FufDirWithFullCwd<CR>
-nnoremap <silent> s<C-d> :FufDir<CR>
-nnoremap <silent> sn     :FufMruFile<CR>
-nnoremap <silent> sN     :FufMruFileInCwd<CR>
-nnoremap <silent> sm     :FufMruCmd<CR>
-nnoremap <silent> su     :FufBookmarkFile<CR>
-nnoremap <silent> s<C-u> :FufBookmarkFileAdd<CR>
-vnoremap <silent> s<C-u> :FufBookmarkFileAddAsSelectedText<CR>
-nnoremap <silent> si     :FufBookmarkDir<CR>
-nnoremap <silent> s<C-i> :FufBookmarkDirAdd<CR>
-nnoremap <silent> st     :FufTag<CR>
-nnoremap <silent> sT     :FufTag!<CR>
-nnoremap <silent> s<C-]> :FufTagWithCursorWord!<CR>
-nnoremap <silent> s,     :FufBufferTag<CR>
-nnoremap <silent> s<     :FufBufferTag!<CR>
-vnoremap <silent> s,     :FufBufferTagWithSelectedText!<CR>
-vnoremap <silent> s<     :FufBufferTagWithSelectedText<CR>
-nnoremap <silent> s}     :FufBufferTagWithCursorWord!<CR>
-nnoremap <silent> s.     :FufBufferTagAll<CR>
-nnoremap <silent> s>     :FufBufferTagAll!<CR>
-vnoremap <silent> s.     :FufBufferTagAllWithSelectedText!<CR>
-vnoremap <silent> s>     :FufBufferTagAllWithSelectedText<CR>
-nnoremap <silent> s]     :FufBufferTagAllWithCursorWord!<CR>
-nnoremap <silent> sg     :FufTaggedFile<CR>
-nnoremap <silent> sG     :FufTaggedFile!<CR>
-nnoremap <silent> so     :FufJumpList<CR>
 nnoremap <silent> sp     :FufChangeList<CR>
 nnoremap <silent> sq     :FufQuickfix<CR>
 nnoremap <silent> sy     :FufLine<CR>
-nnoremap <silent> sh     :FufHelp<CR>
-nnoremap <silent> se     :FufEditDataFile<CR>
-nnoremap <silent> sr     :FufRenewCache<CR>
  
 "-----------------
 "Tasklist Settings ( TODOs )
 "-----------------
 map <leader>td <Plug>TaskList
- 
-"-------------------
-"Powerline settings ( really workarounds for newest powerline, i am not using it )
-"-------------------
-"let g:powerline_loaded=1
-"let g:powerline_config_path=expand("~/.config/powerline")
-"set encoding=utf-8
-"python import sys
-"python sys.path.append("~/.vim/bundle/powerline")
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
  
 "-----------------
 "NERDTree Settings
@@ -434,13 +390,34 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-"------------------
-"Syntastic settings
-"Some are also set in the after plugin directory
-"------------------
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_include_dirs = [ '$PROJ_SRC_DIR', '/siglinux/tc/sles11sp1_gcc-4.3.4_x86-64/sig1/boost-1.47.0/include', '$PROJ_SRC_DIR/MD/Tools/mctools'  ]
+"-----------------------
+" neocomplcache Settings
+" These have some dependency on other plugins such as clang_complete
+"-----------------------
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc=1
 
+"-----------------------
+" clang_complete Settings
+"-----------------------
+let g:clang_complete_auto=1
+let g:clang_complete_copen=1
+let g:clang_close_preview=1
+
+" Syntastic Settings
+"-------------------
+let g:syntastic_cpp_check_header = 1
+
+"-------------------
+"Powerline settings ( really workarounds for newest powerline, i am not using it )
+"-------------------
+"let g:powerline_loaded=1
+"let g:powerline_config_path=expand("~/.config/powerline")
+"set encoding=utf-8
+"python import sys
+"python sys.path.append("~/.vim/bundle/powerline")
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+ 
 "-----------------------------------------------------------------------
 "Allow local vimrc settings ( this is to handle work vs. home settings )
 "-----------------------------------------------------------------------
