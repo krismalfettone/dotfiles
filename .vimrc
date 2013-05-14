@@ -54,6 +54,8 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'osyo-manga/neocomplcache-clang_complete'
+Bundle 'nathanaelkane/vim-indent-guides'
+
  
 "My Bundle of settings
 "---------------------
@@ -401,12 +403,23 @@ let g:neocomplcache_force_overwrite_completefunc=1
 " clang_complete Settings
 "-----------------------
 let g:clang_complete_auto=1
-let g:clang_complete_copen=1
+"let g:clang_complete_copen=1
 let g:clang_close_preview=1
 
 " Syntastic Settings
 "-------------------
 let g:syntastic_cpp_check_header = 1
+let g:syntastic_mode_map = { 'mode': 'active',
+         \ 'active_filetypes': [],
+         \ 'passive_filetypes': ['cpp'] }
+nmap <Leader>sc :SyntasticCheck<CR>
+
+"IndentGuides Settings
+"----------------------
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+"hi IndentGuidesOdd  ctermbg=lightgrey
+"hi IndentGuidesEven ctermbg=darkgrey
 
 "-------------------
 "Powerline settings ( really workarounds for newest powerline, i am not using it )
