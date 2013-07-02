@@ -23,21 +23,21 @@ Bundle 'Diablo3'
 
 "Bundles from vim.org
 "--------------------
+"Bundle 'pylint.vim'
+"Bundle 'tslime.vim'
+"Bundle 'TaskList.vim'
 Bundle 'a.vim'
-Bundle 'pylint.vim'
-Bundle 'tslime.vim'
-Bundle 'TaskList.vim'
 Bundle 'matchit.zip'
 
 "Bundles from designed for Vundle or pathogen
 "--------------------------------------------
 "Bundle 'AutoComplPop'
 "Bundle 'OmniCppComplete'
+"Bundle 'LargeFile'
 Bundle 'Tagbar'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
-Bundle 'LargeFile'
 
 "Bundles from GitHub
 "-------------------
@@ -45,18 +45,16 @@ Bundle 'LargeFile'
 "Bundle 'Lokaltog/vim-powerline'
 "Bundle 'ashwin/vim-powerline'
 "Bundle 'Valloric/YouCompleteMe'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'Rip-Rip/clang_complete'
+"Bundle 'tpope/vim-dispatch'
+"Bundle 'osyo-manga/neocomplcache-clang_complete'
+"Bundle 'tpope/vim-fugitive'
+Bundle 'Shougo/neocomplcache'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-dispatch'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'osyo-manga/neocomplcache-clang_complete'
-Bundle 'nathanaelkane/vim-indent-guides'
-
- 
+Bundle 'maciakl/vim-neatstatus'
 "My Bundle of settings
 "---------------------
 Bundle 'krismalfettone/vim-extras'
@@ -382,7 +380,7 @@ map <leader>NT :NERDTreeToggle<CR>
 "MiniBufExpl Settings
 "---------------------
 let g:miniBufExplModSelTarget = 1
-map <Leader>mb :TMiniBufExplorer<cr>
+map <Leader>mb :MBEToggle<cr>
 
 "------------------
 "UltiSnips Settings
@@ -394,32 +392,12 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "-----------------------
 " neocomplcache Settings
-" These have some dependency on other plugins such as clang_complete
 "-----------------------
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc=1
-
-"-----------------------
-" clang_complete Settings
-"-----------------------
-let g:clang_complete_auto=1
-"let g:clang_complete_copen=1
-let g:clang_close_preview=1
-
-" Syntastic Settings
-"-------------------
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_mode_map = { 'mode': 'active',
-         \ 'active_filetypes': [],
-         \ 'passive_filetypes': ['cpp'] }
-nmap <Leader>sc :SyntasticCheck<CR>
-
-"IndentGuides Settings
-"----------------------
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-"hi IndentGuidesOdd  ctermbg=lightgrey
-"hi IndentGuidesEven ctermbg=darkgrey
+if !exists('g:neocomplcache_sources_list')
+   let g:neocomplcache_sources_list = {}
+endif
+let g:neocomplcache_sources_list.cpp = ["_"]
 
 "-------------------
 "Powerline settings ( really workarounds for newest powerline, i am not using it )
