@@ -55,6 +55,8 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'maciakl/vim-neatstatus'
+"Bundle 'bling/vim-airline'
+
 "My Bundle of settings
 "---------------------
 Bundle 'krismalfettone/vim-extras'
@@ -398,6 +400,11 @@ if !exists('g:neocomplcache_sources_list')
    let g:neocomplcache_sources_list = {}
 endif
 let g:neocomplcache_sources_list.cpp = ["_"]
+
+" ----------------------
+" buffer-line settings
+" ----------------------
+"let g:bufferline_echo = 0
 
 "-------------------
 "Powerline settings ( really workarounds for newest powerline, i am not using it )
