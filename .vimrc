@@ -38,6 +38,7 @@ Bundle 'Tagbar'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
 Bundle 'UltiSnips'
+Bundle 'bufexplorer.zip'
 
 "Bundles from GitHub
 "-------------------
@@ -51,11 +52,14 @@ Bundle 'UltiSnips'
 "Bundle 'tpope/vim-dispatch'
 "Bundle 'osyo-manga/neocomplcache-clang_complete'
 "Bundle 'tpope/vim-fugitive'
+"Bundle 'bling/vim-airline'
 Bundle 'Shougo/neocomplcache'
-Bundle 'fholgado/minibufexpl.vim'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'maciakl/vim-neatstatus'
-"Bundle 'bling/vim-airline'
+Bundle 'mattboehm/unstack'
+Bundle 'mattboehm/vim-accordion'
+Bundle 'Yggdroot/indentLine'
 
 "My Bundle of settings
 "---------------------
@@ -383,6 +387,12 @@ map <leader>NT :NERDTreeToggle<CR>
 "---------------------
 let g:miniBufExplModSelTarget = 1
 map <Leader>mb :MBEToggle<cr>
+
+
+"---------------------
+"BufExplorer Settings
+"---------------------
+let g:bufExplorerSortBy='number'     " Sort by the buffer's number.
 
 "------------------
 "UltiSnips Settings
